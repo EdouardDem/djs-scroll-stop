@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="../src/djs-ui-tools.js"></script>
+    <script type="text/javascript" src="simple.js"></script>
+    <style>
+        .results,
+        .scrolls-cnt{
+            max-width: 1000px;
+            background: #eee;
+            margin: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .cnt {
+            height: 600px;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+        .scroll-cnt {
+            float: left;
+            width: 200px;
+            height: 100px;
+            overflow: auto;
+        }
+        .scroll-cnt + .scroll-cnt {
+            margin-left: 20px;
+        }
+        .scroll-cnt .inr {
+            background: lightblue;
+        }
+        #scroll-1 .inr {
+            width: 100px;
+            height: 50px;
+        }
+        #scroll-2 .inr {
+            width: 100px;
+            height: 200px;
+        }
+        #scroll-3 .inr {
+            width: 400px;
+            height: 50px;
+        }
+        #scroll-4 .inr {
+            width: 400px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+<div class="cnt">
+    <pre class="results"></pre>
+    <div class="scrolls-cnt">
+        <pre>Scroll directions test</pre>
+        <div class="scroll-cnt" id="scroll-1"><pre class="inr"></pre></div>
+        <div class="scroll-cnt" id="scroll-2"><pre class="inr"></pre></div>
+        <div class="scroll-cnt" id="scroll-3"><pre class="inr"></pre></div>
+        <div class="scroll-cnt" id="scroll-4"><pre class="inr"></pre></div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+</body>
+</html>
