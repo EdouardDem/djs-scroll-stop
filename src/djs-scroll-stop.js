@@ -33,17 +33,6 @@ djs.scrollStop = {
 		right: 'djs-scroll-right',
 		bottom: 'djs-scroll-bottom'
 	},
-	/**
-	 * Directions of scroll
-	 *
-	 * @var {Object}
-	 */
-	directions: {
-		none: 0,
-		horizontal: 1,
-		vertical: 2,
-		both: 3
-	},
 
 	/* ========================================================================
 	 * 	PRIVATE PROPERTIES
@@ -317,36 +306,6 @@ djs.scrollStop = {
 		}
 		return this;
 	},
-	/**
-	 * Find the direction of the scroll of and element
-	 *
-	 * @param {Object} $element
-	 * @return {Number}
-	 * none: 0,
-	 * horizontal: 1,
-	 * vertical: 2,
-	 * both: 3
-	 *
-	 * This values are stored in djs.scrollStop.directions
-	 */
-	getScrollDirection: function ($element) {
-
-		// Check if element exists
-		if ($element.length == 0) return this.directions.none;
-
-		// Values
-		var w = $element.outerWidth(),
-			h = $element.outerHeight(),
-			sh = $element.get(0).scrollHeight,
-			sw = $element.get(0).scrollWidth;
-
-		// Returns directions
-		if (sh > h && sw > w) return this.directions.both;
-		if (sh > h) return this.directions.vertical;
-		if (sw > w) return this.directions.horizontal;
-		return this.directions.none;
-	},
-
 
 	/* ========================================================================
 	 * 	CALLBACKS
