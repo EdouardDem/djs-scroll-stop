@@ -15,6 +15,8 @@ window.djs = window.djs || {};
  *
  * @see https://github.com/EdouardDem/djs-scroll-stop
  * @requires djs.resize <https://github.com/EdouardDem/djs-resize>
+ *
+ * @todo Add callbacks attached to each element and remove the general callbacks
  */
 djs.scrollStop = {
 
