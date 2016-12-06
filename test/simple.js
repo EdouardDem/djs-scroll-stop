@@ -4,7 +4,7 @@
  * @param {String} text
  */
 displayLog = function (text) {
-    $('.results').append('<div>' + text + '</div>');
+    $('.results').prepend('<div>' + text + '</div>');
     console.log(text);
 };
 /**
@@ -19,29 +19,43 @@ clearLog = function () {
  */
 runTests = function () {
 
-    //----------------------------------------------
-    // Dimensions test
-	$('.results')
-		.append('<div>Windows width as media query (including the scrollbar): ' + djs.tools.ui.getWindowWidth() + 'px</div>')
-		.append('<div>Windows width only: ' + djs.tools.ui.getWindowWidth(false) + 'px</div>')
-		.append('<div>Scrollbar width: ' + djs.tools.ui.getScrollbarWidth() + 'px</div>')
-		.append('<div>Body has scroll bar: ' + (djs.tools.ui.bodyHasScrollbar() ? 'Yes': 'No') + '</div>');
+	/**
+	 * Watch a scroller
+	 *
+	 * @param {Number} index
+	 */
+	var enable = function(index) {
+		djs.scrollStop.watch(
+			$('.scroll-cnt').eq(index),
+			'scroller-'+(index+1)
+		);
+	};
+	/**
+	 * Stop watching a scroller
+	 *
+	 * @param {Number} index
+	 */
+	var disable = function(index) {
+		djs.scrollStop.unwatch('scroller-'+(index+1));
+	};
+
+	//Bind callbacks
+	djs.scrollStop.didLeavePosition = function($element, id, position) {
+		displayLog(id + ' did leave ' + position);
+	};
+	djs.scrollStop.didReachPosition = function($element, id, position) {
+		displayLog(id + ' did reach ' + position);
+	};
 
 	//----------------------------------------------
-	// Directions test
-	$('.scroll-cnt').each(function(i,e) {
-		var direction = djs.tools.ui.getScrollDirection($(e));
-		var text = "Unknown";
-		if (direction === djs.tools.ui.directions.none) text = "none";
-		else if (direction === djs.tools.ui.directions.horizontal) text = "horizontal";
-		else if (direction === djs.tools.ui.directions.vertical) text = "vertical";
-		else if (direction === djs.tools.ui.directions.both) text = "both";
-		$(e).find('.inr').text(text);
-	});
+	// Init the resize (always first)
+	djs.resize.init();
 
     //----------------------------------------------
-    // Ends displayed tests
-    displayLog(" ");
+    // Scrolling test
+	enable(0);
+	enable(1);
+	enable(2);
 
 };
 /**

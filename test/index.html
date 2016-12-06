@@ -2,11 +2,14 @@
 <html>
 <head>
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
-    <script type="text/javascript" src="../src/djs-ui-tools.js"></script>
+    <script type="text/javascript" src="../bower_components/djs-call-stack/dist/djs-call-stack.min.js"></script>
+    <script type="text/javascript" src="../bower_components/djs-resize/dist/djs-resize.min.js"></script>
+    <script type="text/javascript" src="../bower_components/djs-ui-tools/dist/djs-ui-tools.min.js"></script>
+    <script type="text/javascript" src="../src/djs-scroll-stop.js"></script>
     <script type="text/javascript" src="simple.js"></script>
     <style>
         .results,
-        .scrolls-cnt{
+        .scrolls-cnt {
             max-width: 1000px;
             background: #eee;
             margin: auto;
@@ -17,54 +20,140 @@
             margin-bottom: 20px;
         }
 
-        .cnt {
-            height: 600px;
-        }
-
         .clearfix {
             clear: both;
         }
-        .scroll-cnt {
+
+        .column {
             float: left;
-            width: 200px;
-            height: 100px;
-            overflow: auto;
+            width: 300px;
         }
-        .scroll-cnt + .scroll-cnt {
+        .column + .column {
             margin-left: 20px;
         }
+
+        .scroll-cnt {
+            height: 200px;
+            overflow: auto;
+        }
+
+        .scroll-cnt.djs-scroll-left {
+            border-left: 3px lightcoral solid;
+            margin-left: -3px;
+        }
+
+        .scroll-cnt.djs-scroll-right {
+            border-right: 3px lightcoral solid;
+            margin-right: -3px;
+        }
+
+        .scroll-cnt.djs-scroll-top {
+            border-top: 3px lightcoral solid;
+            margin-top: -3px;
+        }
+
+        .scroll-cnt.djs-scroll-bottom {
+            border-bottom: 3px lightcoral solid;
+            margin-bottom: -3px;
+        }
+
         .scroll-cnt .inr {
-            background: lightblue;
+            font-family: monospace;
         }
+
         #scroll-1 .inr {
-            width: 100px;
-            height: 50px;
+
         }
+
         #scroll-2 .inr {
-            width: 100px;
-            height: 200px;
+            width: 200%;
         }
+
         #scroll-3 .inr {
-            width: 400px;
-            height: 50px;
-        }
-        #scroll-4 .inr {
-            width: 400px;
-            height: 200px;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
 <div class="cnt">
-    <pre class="results"></pre>
     <div class="scrolls-cnt">
-        <pre>Scroll directions test</pre>
-        <div class="scroll-cnt" id="scroll-1"><pre class="inr"></pre></div>
-        <div class="scroll-cnt" id="scroll-2"><pre class="inr"></pre></div>
-        <div class="scroll-cnt" id="scroll-3"><pre class="inr"></pre></div>
-        <div class="scroll-cnt" id="scroll-4"><pre class="inr"></pre></div>
+        <pre>Scrolling tests</pre>
+        <div class="column">
+            <div class="scroll-cnt" id="scroll-1">
+                <div class="inr">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus, justo non sodales
+                    pellentesque, orci mauris volutpat tellus, nec iaculis augue massa ut sapien. Nunc viverra malesuada
+                    nisl, id elementum eros fermentum sed. Donec id aliquet tellus, quis fermentum arcu. Vivamus
+                    vulputate enim neque, a ultrices ligula semper vel. Nullam et volutpat leo. Donec sed metus
+                    sagittis, elementum eros vitae, feugiat dui. Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Morbi feugiat nunc urna, eget volutpat ligula auctor vel. Phasellus
+                    est nibh, aliquam et efficitur vitae, egestas at lectus. In imperdiet, quam vel congue pulvinar, sem
+                    massa facilisis nibh, vel dignissim nibh neque sit amet massa. Aliquam a tincidunt lectus, sit amet
+                    consectetur nunc. Nam scelerisque nisl in felis porta, eget facilisis ante consectetur. Vivamus ut
+                    consequat dui.
+                    Donec pretium id felis non molestie. Nulla sit amet dolor placerat, euismod sapien et, gravida
+                    risus. Praesent vitae viverra tellus, eu convallis tortor. In lacinia sapien non sapien ornare, eget
+                    maximus magna venenatis. Donec placerat a odio sed accumsan. Donec elit quam, bibendum et elementum
+                    vehicula, rhoncus placerat velit. Cras tincidunt tincidunt felis, quis dictum dolor pulvinar sit
+                    amet. Ut tempus faucibus nunc, luctus dapibus eros imperdiet ac.
+                    Mauris ut maximus sapien, et mollis tortor. Etiam rutrum, ex id vestibulum euismod, magna mi varius
+                    tortor, quis volutpat nisl turpis sed risus. Suspendisse potenti. Proin quis dui non libero sodales
+                    ultrices. Mauris nibh diam, commodo at dignissim ac, dictum at orci. Cras quis neque ut elit feugiat
+                    imperdiet nec vitae risus. Nam euismod enim non felis tincidunt, eget semper sapien facilisis. Etiam
+                    vel augue non nunc condimentum egestas. Class aptent taciti sociosqu ad litora torquent per conubia
+                    nostra, per inceptos himenaeos. Ut suscipit tincidunt pretium. Fusce sagittis nec tortor ac sodales.
+                    Etiam molestie diam vitae libero rutrum imperdiet. Morbi commodo leo in vulputate hendrerit. Cum
+                    sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    Sed mattis at augue id posuere. Sed at dignissim odio, at blandit lectus. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Quisque pulvinar malesuada ligula non viverra. Phasellus quis
+                    feugiat metus. Etiam vulputate commodo vestibulum. Aliquam maximus tempor lorem id gravida. Nulla
+                    viverra aliquam aliquet.
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="scroll-cnt" id="scroll-2">
+                <div class="inr">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus, justo non sodales
+                    pellentesque, orci mauris volutpat tellus, nec iaculis augue massa ut sapien. Nunc viverra malesuada
+                    nisl, id elementum eros fermentum sed. Donec id aliquet tellus, quis fermentum arcu. Vivamus
+                    vulputate enim neque, a ultrices ligula semper vel. Nullam et volutpat leo. Donec sed metus
+                    sagittis, elementum eros vitae, feugiat dui. Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Morbi feugiat nunc urna, eget volutpat ligula auctor vel. Phasellus
+                    est nibh, aliquam et efficitur vitae, egestas at lectus. In imperdiet, quam vel congue pulvinar, sem
+                    massa facilisis nibh, vel dignissim nibh neque sit amet massa. Aliquam a tincidunt lectus, sit amet
+                    consectetur nunc. Nam scelerisque nisl in felis porta, eget facilisis ante consectetur. Vivamus ut
+                    consequat dui.
+                    Donec pretium id felis non molestie. Nulla sit amet dolor placerat, euismod sapien et, gravida
+                    risus. Praesent vitae viverra tellus, eu convallis tortor. In lacinia sapien non sapien ornare, eget
+                    maximus magna venenatis. Donec placerat a odio sed accumsan. Donec elit quam, bibendum et elementum
+                    vehicula, rhoncus placerat velit. Cras tincidunt tincidunt felis, quis dictum dolor pulvinar sit
+                    amet. Ut tempus faucibus nunc, luctus dapibus eros imperdiet ac.
+                    Mauris ut maximus sapien, et mollis tortor. Etiam rutrum, ex id vestibulum euismod, magna mi varius
+                    tortor, quis volutpat nisl turpis sed risus. Suspendisse potenti. Proin quis dui non libero sodales
+                    ultrices. Mauris nibh diam, commodo at dignissim ac, dictum at orci. Cras quis neque ut elit feugiat
+                    imperdiet nec vitae risus. Nam euismod enim non felis tincidunt, eget semper sapien facilisis. Etiam
+                    vel augue non nunc condimentum egestas. Class aptent taciti sociosqu ad litora torquent per conubia
+                    nostra, per inceptos himenaeos. Ut suscipit tincidunt pretium. Fusce sagittis nec tortor ac sodales.
+                    Etiam molestie diam vitae libero rutrum imperdiet. Morbi commodo leo in vulputate hendrerit. Cum
+                    sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                    Sed mattis at augue id posuere. Sed at dignissim odio, at blandit lectus. Lorem ipsum dolor sit
+                    amet, consectetur adipiscing elit. Quisque pulvinar malesuada ligula non viverra. Phasellus quis
+                    feugiat metus. Etiam vulputate commodo vestibulum. Aliquam maximus tempor lorem id gravida. Nulla
+                    viverra aliquam aliquet.
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="scroll-cnt" id="scroll-3">
+                <div class="inr">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras maximus, justo non
+                    sodales pellentesque, orci mauris volutpat tellus.
+                </div>
+            </div>
+        </div>
         <div class="clearfix"></div>
     </div>
+    <pre class="results"></pre>
 </div>
 </body>
 </html>
