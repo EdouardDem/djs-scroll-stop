@@ -329,7 +329,7 @@ djs.scrollStop = {
 	 * @param {String} position
 	 */
 	didReachPosition: function ($element, id, position) {
-		if (this._debug) console.log('[djs.overflow] ' + id + ' did reach ' + position);
+		if (this._debug) console.log('[djs.scrollStop] ' + id + ' did reach ' + position);
 	},
 	/**
 	 * Called when an element leaves a scroll stop
@@ -339,6 +339,6 @@ djs.scrollStop = {
 	 * @param {String} position
 	 */
 	didLeavePosition: function ($element, id, position) {
-		if (this._debug) console.log('[djs.overflow] ' + id + ' did leave ' + position);
+		if (this._debug) console.log('[djs.scrollStop] ' + id + ' did leave ' + position);
 	}
 };
