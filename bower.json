@@ -1,0 +1,32 @@
+{
+  "name": "djs-scroll-stop",
+  "description": "A JavaScript libray to detect the scrolling",
+  "main": [
+    "dist/djs-scroll-stop.js",
+    "dist/djs-scroll-stop.min.js"
+  ],
+  "authors": [
+    "Edouard Demotes-Mainard"
+  ],
+  "license": "https://opensource.org/licenses/BSD-2-Clause",
+  "keywords": [
+    "scroll",
+    "stop",
+    "detect"
+  ],
+  "homepage": "https://github.com/EdouardDem/djs-scroll-stop",
+  "moduleType": [
+    "globals"
+  ],
+  "dependencies": {
+    "jquery": "^2.0.0",
+    "djs-resize": "^0.1.2",
+    "djs-ui-tools": "^0.1.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ]
+}

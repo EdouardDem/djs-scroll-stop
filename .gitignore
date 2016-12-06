@@ -1,0 +1,4 @@
+# NodeJS modules
+/node_modules
+# Bower components
+/bower_components
