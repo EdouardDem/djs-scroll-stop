@@ -29,6 +29,8 @@ runTests = function () {
 			$('.scroll-cnt').eq(index),
 			'scroller-'+(index+1)
 		);
+		$('.enable[data-index='+index+']').addClass('hidden');
+		$('.disable[data-index='+index+']').removeClass('hidden');
 	};
 	/**
 	 * Stop watching a scroller
@@ -37,6 +39,8 @@ runTests = function () {
 	 */
 	var disable = function(index) {
 		djs.scrollStop.unwatch('scroller-'+(index+1));
+		$('.enable[data-index='+index+']').removeClass('hidden');
+		$('.disable[data-index='+index+']').addClass('hidden');
 	};
 
 	//Bind callbacks
@@ -47,6 +51,16 @@ runTests = function () {
 		displayLog(id + ' did reach ' + position);
 	};
 
+	//Bind actions
+	$('.enable').click(function(e) {
+		e.preventDefault();
+		enable($(this).data('index'));
+	});
+	$('.disable').click(function(e) {
+		e.preventDefault();
+		disable($(this).data('index'));
+	});
+
 	//----------------------------------------------
 	// Init the resize (always first)
 	djs.resize.init();
@@ -56,6 +70,7 @@ runTests = function () {
 	enable(0);
 	enable(1);
 	enable(2);
+
 
 };
 /**
