@@ -146,7 +146,7 @@ djs.overflow = {
 		this._$window = $(window);
 
 		// Save the scroll bar dimensions
-		this._scrollBarWidth = this.getScrollBarWidth();
+		this._scrollBarWidth = djs.tools.ui.getScrollbarWidth();
 
 		// Bind the events
 		this._bind();
@@ -350,36 +350,6 @@ djs.overflow = {
 
 		}
 		return this;
-	},
-	/**
-	 * Retourne la largeur de la scrollbar
-	 *
-	 * @return {Integer}
-	 */
-	getScrollBarWidth: function() {
- 		this._$htmlBody.css('overflow', 'scroll');
- 		var w1 = this._$body.outerWidth();
- 		this._$htmlBody.css('overflow', 'hidden');
- 		var w2 = this._$body.outerWidth();
- 		this._$htmlBody.css('overflow', '');
- 		return (w2 - w1);
- 	},
-	/**
-	 * Retourne la largeur de la scrollbar pour une div
-	 *
-	 * @return {Integer}
-	 */
-	getScrollBarWidthFromDiv: function() {
-		this._$body.append('<div id="overflow-scroller-width-tester"></div>');
-		var $div = $('#overflow-scroller-width-tester');
-		$div.append('<div class="inr" style="width:100%;height:100%;"></div>');
-		var $inr = $div.find('.inr');
-		$div.height(100).width(100);
-		var w1 = $inr.outerWidth();
-		$div.css('overflow', 'scroll');
-		var w2 = $inr.outerWidth();
-		$div.remove();
-		return (w1 - w2);
 	},
 	/**
 	 * Indique si l'élement a un scroll
