@@ -175,8 +175,8 @@ djs.scrollStop = {
 			this.refresh(id);
 		}.bind(this));
 
-		// Force refresh for the first time
-		this.refresh(id);
+		// Force refresh for the first time (in silent mode)
+		this.refresh(id, true);
 
 		return this;
 	},
@@ -226,9 +226,10 @@ djs.scrollStop = {
 	 * @callback didReachPosition
 	 * @callback didLeavePosition
 	 * @param {String} id    (optional - null => all)
+	 * @param {Boolean} silent    (optional) Set true to disable callbacks
 	 * @return {Object}
 	 */
-	refresh: function (id) {
+	refresh: function (id, silent) {
 
 		// All elements
 		if (id == null) {
@@ -243,7 +244,7 @@ djs.scrollStop = {
 			if (this._items[id] == null)
 				return this;
 
-			//Pour chaque éléments
+			// For each elements
 			this._items[id].each(function (i, e) {
 
 				// Get the element
@@ -264,10 +265,10 @@ djs.scrollStop = {
 				if (hasScrollVertical) w -= this._scrollBarWidth;
 
 				// Guess positions
-				var isTop = top <= 0 || !hasScrollVertical,
-					isBottom = top >= sh - h - this._tolerance || !hasScrollVertical,
-					isLeft = left <= 0 || !hasScrollHorizontal,
-					isRight = left >= sw - w - this._tolerance || !hasScrollHorizontal;
+				var isTop = hasScrollVertical && (top <= 0),
+					isBottom = hasScrollVertical && (top >= sh - h - this._tolerance),
+					isLeft = hasScrollHorizontal && (left <= 0),
+					isRight = hasScrollHorizontal && (left >= sw - w - this._tolerance);
 
 				// Current classes
 				var hasTop = $el.hasClass(this.classes.top),
@@ -279,26 +280,34 @@ djs.scrollStop = {
 				// Top
 				if (isTop != hasTop) {
 					$el.toggleClass(this.classes.top, isTop);
-					if (hasTop) this.didLeavePosition($el, id, 'top');
-					else this.didReachPosition($el, id, 'top');
+					if (!silent) {
+						if (hasTop) this.didLeavePosition($el, id, 'top');
+						else this.didReachPosition($el, id, 'top');
+					}
 				}
 				// Bottom
 				if (isBottom != hasBottom) {
 					$el.toggleClass(this.classes.bottom, isBottom);
-					if (hasBottom) this.didLeavePosition($el, id, 'bottom');
-					else this.didReachPosition($el, id, 'bottom');
+					if (!silent) {
+						if (hasBottom) this.didLeavePosition($el, id, 'bottom');
+						else this.didReachPosition($el, id, 'bottom');
+					}
 				}
 				// Left
 				if (isLeft != hasLeft) {
 					$el.toggleClass(this.classes.left, isLeft);
-					if (hasLeft) this.didLeavePosition($el, id, 'left');
-					else this.didReachPosition($el, id, 'left');
+					if (!silent) {
+						if (hasLeft) this.didLeavePosition($el, id, 'left');
+						else this.didReachPosition($el, id, 'left');
+					}
 				}
 				// Right
 				if (isRight != hasRight) {
 					$el.toggleClass(this.classes.right, isRight);
-					if (hasRight) this.didLeavePosition($el, id, 'right');
-					else this.didReachPosition($el, id, 'right');
+					if (!silent) {
+						if (hasRight) this.didLeavePosition($el, id, 'right');
+						else this.didReachPosition($el, id, 'right');
+					}
 				}
 
 			}.bind(this));
@@ -318,7 +327,7 @@ djs.scrollStop = {
 	 * @param {String} position
 	 */
 	didReachPosition: function ($element, id, position) {
-		if (this._debug) console.log('[djs.overflow] ' + id + ' reach ' + position);
+		if (this._debug) console.log('[djs.overflow] ' + id + ' did reach ' + position);
 	},
 	/**
 	 * Called when an element leaves a scroll stop
@@ -328,6 +337,6 @@ djs.scrollStop = {
 	 * @param {String} position
 	 */
 	didLeavePosition: function ($element, id, position) {
-		if (this._debug) console.log('[djs.overflow] ' + id + ' leave ' + position);
+		if (this._debug) console.log('[djs.overflow] ' + id + ' did leave ' + position);
 	}
 };
